@@ -19,7 +19,6 @@ public:
     void loseLife();
     void render();
     void levelComplete();
-    void spawnExtraBall();
     void powerupEffect(POWERUPS pu, float t);
 
     Paddle* getPaddle() const;
@@ -35,6 +34,7 @@ private:
     float _time;
     float _timeLastPowerupSpawned;
     int _lives;
+    int shaking;
     bool _levelComplete;
     bool _isExtraBallSpawned;
     std::pair<POWERUPS, float> _powerupInEffect;

@@ -28,7 +28,7 @@ void GameManager::initialize()
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
-
+    shaking = 0;
 }
 
 void GameManager::update(float dt)
@@ -105,7 +105,16 @@ void GameManager::loseLife()
     _lives--;
     _ui->lifeLost(_lives);
 
-    // TODO screen shake.
+    shaking = 1;
+    if (shaking > 0)
+    {
+        _window->setPosition(sf::Vector2i(_window->getPosition().x + rand() % 50, _window->getPosition().y));
+        shaking++;
+            if (shaking == 5)
+            {
+                shaking = 0;
+            }
+    }
 }
 
 void GameManager::render()
