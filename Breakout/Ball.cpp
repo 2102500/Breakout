@@ -8,6 +8,7 @@ Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager)
     _sprite.setRadius(RADIUS);
     _sprite.setFillColor(sf::Color::Cyan);
     _sprite.setPosition(0, 300);
+    //newBall = this;
 }
 
 Ball::~Ball()
@@ -115,7 +116,7 @@ void Ball::setFireBall(float duration)
     _timeWithPowerupEffect = 0.f;    
 }
 
-void Ball::spawnExtraBall()
-{
-    new Ball(_window, 400.0f, _gameManager);
-}
+//void Ball::spawnExtraBall()
+//{
+//    newBall = new Ball(_window, 400.0f, _gameManager);
+//}

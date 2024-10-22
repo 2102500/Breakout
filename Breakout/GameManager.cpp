@@ -4,7 +4,7 @@
 #include <iostream>
 
 GameManager::GameManager(sf::RenderWindow* window)
-    : _window(window), _paddle(nullptr), _ball(nullptr), _brickManager(nullptr), _powerupManager(nullptr),
+    : _window(window), _paddle(nullptr), _ball(nullptr), _extraBall(nullptr), _brickManager(nullptr), _powerupManager(nullptr),
     _messagingSystem(nullptr), _ui(nullptr), _pause(false), _time(0.f), _lives(3), _pauseHold(0.f), _levelComplete(false),
     _powerupInEffect({ none,0.f }), _timeLastPowerupSpawned(0.f)
 {
@@ -26,6 +26,14 @@ void GameManager::initialize()
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
+
+    _isExtraBallSpawned = false;
+}
+
+void GameManager::spawnExtraBall()
+{
+    _isExtraBallSpawned = true;
+    _extraBall = new Ball(_window, 400.0f, this);
 }
 
 void GameManager::update(float dt)
@@ -85,6 +93,10 @@ void GameManager::update(float dt)
     _paddle->update(dt);
     _ball->update(dt);
     _powerupManager->update(dt);
+    if (_isExtraBallSpawned)
+    {
+        _extraBall->update(dt);
+    }
 }
 
 void GameManager::loseLife()
@@ -103,6 +115,10 @@ void GameManager::render()
     _powerupManager->render();
     _window->draw(_masterText);
     _ui->render();
+    if (_isExtraBallSpawned)
+    {
+        _extraBall->render();
+    }
 }
 
 void GameManager::levelComplete()

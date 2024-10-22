@@ -26,7 +26,7 @@ private:
     float _timeWithPowerupEffect;
 
     GameManager* _gameManager;  // Reference to the GameManager
-
+    //Ball* newBall;
 
     static constexpr float RADIUS = 10.0f;      
     static constexpr float VELOCITY = 350.0f;   // for reference.

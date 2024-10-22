@@ -31,6 +31,7 @@ private:
     sf::RenderWindow* _window;
     Paddle* _paddle;
     Ball* _ball;
+    GameManager* _gameManager;
     std::vector<PowerupBase*> _powerups;            // used to manage deletion.
     std::optional<std::pair<POWERUPS, float>> _powerupInEffect;    // used for gameManager to get reference.
 };

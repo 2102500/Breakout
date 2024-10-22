@@ -18,6 +18,7 @@ public:
     void loseLife();
     void render();
     void levelComplete();
+    void spawnExtraBall();
     void powerupEffect(POWERUPS pu, float t);
 
     Paddle* getPaddle() const;
@@ -34,6 +35,7 @@ private:
     float _timeLastPowerupSpawned;
     int _lives;
     bool _levelComplete;
+    bool _isExtraBallSpawned;
     std::pair<POWERUPS, float> _powerupInEffect;
 
     sf::Font _font;
@@ -42,6 +44,7 @@ private:
     sf::RenderWindow* _window;
     Paddle* _paddle;
     Ball* _ball;
+    Ball* _extraBall;
     BrickManager* _brickManager;
     PowerupManager* _powerupManager;
     MessagingSystem* _messagingSystem;
