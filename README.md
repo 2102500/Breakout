@@ -36,3 +36,4 @@ fire ball (green)
 22/10/24 12:31 - Fixed game breaking bug where child class was called inside parent class
 22/10/24 12:42 - Deleted duplicated code in GameManager.cpp where paddle input was checked twice
 22/10/24 13:02 - added new 'extra ball' powerup header and cpp file, updated powerup manager and CONSTANTS.h
+22/10/24 13:15 - amended UI text and switch in powerup manager to include new powerup
