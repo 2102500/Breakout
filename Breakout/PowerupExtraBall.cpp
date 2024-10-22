@@ -1,7 +1,7 @@
 #include "PowerupExtraBall.h"
 
 PowerupExtraBall::PowerupExtraBall(sf::RenderWindow* window, Paddle* paddle, Ball* ball)
-    : PowerupBase(window, paddle, ball)
+    : PowerupBase(window, paddle, ball), _window(window), _extraBall(nullptr), _gameManager(nullptr)
 {
     _sprite.setFillColor(ballEffectsColour);
 }
@@ -12,6 +12,6 @@ PowerupExtraBall::~PowerupExtraBall()
 
 std::pair<POWERUPS, float> PowerupExtraBall::applyEffect()
 {
-    _ball->setVelocity(0.5f, 5.0f);
+    _extraBall->spawnExtraBall();
     return { extraBall, 5.0f };
 }

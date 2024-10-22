@@ -9,5 +9,8 @@ public:
     ~PowerupExtraBall();
 
     std::pair<POWERUPS, float> applyEffect() override; // Method to apply the power-up effect
+    sf::RenderWindow* _window;
+    GameManager* _gameManager;
+    Ball* _extraBall;
 };
 
