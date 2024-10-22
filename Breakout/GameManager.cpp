@@ -31,10 +31,6 @@ void GameManager::initialize()
 
 }
 
-void GameManager::spawnExtraBall()
-{
-}
-
 void GameManager::update(float dt)
 {
     _powerupInEffect = _powerupManager->getPowerupInEffect();
@@ -99,6 +95,8 @@ void GameManager::update(float dt)
     if (_isExtraBallSpawned)
     {
         _extraBall->update(dt);
+        _paddle->moveRight(dt * 1.5);
+        _paddle->moveLeft(dt * 1.5);
     }
 }
 
