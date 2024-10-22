@@ -1,20 +1,20 @@
-#include "Ball.h"
+#include "ExtraBall.h"
 #include "GameManager.h" // avoid cicular dependencies
 
-Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager)
+ExtraBall::ExtraBall(sf::RenderWindow* window, float velocity, GameManager* gameManager)
     : _window(window), _velocity(velocity), _gameManager(gameManager),
-    _timeWithPowerupEffect(0.f), _isFireBall(false), _isAlive(true), _direction({1,1})
+    _timeWithPowerupEffect(0.f), _isAlive(true), _direction({ 1,1 })
 {
     _sprite.setRadius(RADIUS);
     _sprite.setFillColor(sf::Color::Cyan);
     _sprite.setPosition(0, 300);
 }
 
-Ball::~Ball()
+ExtraBall::~ExtraBall()
 {
 }
 
-void Ball::update(float dt)
+void ExtraBall::update(float dt)
 {
     // check for powerup, tick down or correct
     if (_timeWithPowerupEffect > 0.f)
@@ -25,20 +25,8 @@ void Ball::update(float dt)
     {
         if (_velocity != VELOCITY)
             _velocity = VELOCITY;   // reset speed.
-        else
-        {
-            setFireBall(0);    // disable fireball
-            _sprite.setFillColor(sf::Color::Cyan);  // back to normal colour.
-        }        
     }
 
-    // Fireball effect
-    if (_isFireBall)
-    {
-        // Flickering effect
-        int flicker = rand() % 50 + 205; // Random value between 205 and 255
-        _sprite.setFillColor(sf::Color(flicker, flicker / 2, 0)); // Orange flickering color
-    }
 
     // Update position with a subtle floating-point error
     _sprite.move(_direction * _velocity * dt);
@@ -81,7 +69,6 @@ void Ball::update(float dt)
 
     // collision with bricks
     int collisionResponse = _gameManager->getBrickManager()->checkCollision(_sprite, _direction);
-    if (_isFireBall) return; // no collisisons when in fireBall mode.
     if (collisionResponse == 1)
     {
         _direction.x *= -1; // Bounce horizontally
@@ -92,25 +79,13 @@ void Ball::update(float dt)
     }
 }
 
-void Ball::render()
+void ExtraBall::render()
 {
     _window->draw(_sprite);
 }
 
-void Ball::setVelocity(float coeff, float duration)
+void ExtraBall::setVelocity(float coeff, float duration)
 {
     _velocity = coeff * VELOCITY;
     _timeWithPowerupEffect = duration;
-}
-
-void Ball::setFireBall(float duration)
-{
-    if (duration) 
-    {
-        _isFireBall = true;
-        _timeWithPowerupEffect = duration;        
-        return;
-    }
-    _isFireBall = false;
-    _timeWithPowerupEffect = 0.f;    
 }

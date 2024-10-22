@@ -60,11 +60,6 @@ void UI::updatePowerupText(std::pair<POWERUPS, float> powerup)
 		_powerupText.setString("fire " + oss.str());
 		_powerupText.setFillColor(extraBallEffectsColour);
 		break;
-	case extraBall:
-		oss << std::fixed << std::setprecision(2) << powerup.second;
-		_powerupText.setString("extra ball " + oss.str());
-		_powerupText.setFillColor(ballEffectsColour);
-		break;
 	case none:
 		_powerupText.setString("");
 		

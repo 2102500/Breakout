@@ -1,12 +1,13 @@
 #include "GameManager.h"
 #include "Ball.h"
+#include "ExtraBall.h"
 #include "PowerupManager.h"
 #include <iostream>
 
 GameManager::GameManager(sf::RenderWindow* window)
     : _window(window), _paddle(nullptr), _ball(nullptr), _extraBall(nullptr), _brickManager(nullptr), _powerupManager(nullptr),
     _messagingSystem(nullptr), _ui(nullptr), _pause(false), _time(0.f), _lives(3), _pauseHold(0.f), _levelComplete(false),
-    _powerupInEffect({ none,0.f }), _timeLastPowerupSpawned(0.f)
+    _powerupInEffect({ none,0.f }), _timeLastPowerupSpawned(0.f), _isExtraBallSpawned(false)
 {
     _font.loadFromFile("font/montS.ttf");
     _masterText.setFont(_font);
@@ -23,17 +24,15 @@ void GameManager::initialize()
     _ball = new Ball(_window, 400.0f, this); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
+    _extraBall = new ExtraBall(_window, 400.0f, this);
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 
-    _isExtraBallSpawned = false;
 }
 
 void GameManager::spawnExtraBall()
 {
-    _isExtraBallSpawned = true;
-    _extraBall = new Ball(_window, 400.0f, this);
 }
 
 void GameManager::update(float dt)
@@ -42,6 +41,10 @@ void GameManager::update(float dt)
     _ui->updatePowerupText(_powerupInEffect);
     _powerupInEffect.second -= dt;
     
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    {
+        _isExtraBallSpawned = true;
+    }
 
     if (_lives <= 0)
     {

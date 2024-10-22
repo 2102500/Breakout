@@ -38,4 +38,5 @@ fire ball (green)
 22/10/24 13:02 - added new 'extra ball' powerup header and cpp file, updated powerup manager and CONSTANTS.h
 22/10/24 13:15 - amended UI text and switch in powerup manager to include new powerup
 22/10/24 13:42 - attempting to spawn new ball, added new function to ball class to spawn another ball, called function within powerup class
-22/10/24 14:22 - continuing work on extra ball, currently crashing on collision with powerup 
+22/10/24 14:22 - continuing work on extra ball, currently crashing on collision with powerup
+22/10/24 14:51 - re-worked extra ball feature from powerup feature to difficulty feature, new ball spawned in on key press, currently 'M'
