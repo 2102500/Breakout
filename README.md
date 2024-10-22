@@ -33,3 +33,5 @@ fire ball (green)
 
 # Time Details and Changelist
 22/10/24 12:27 - Start Code Test
+22/10/24 12:31 - Fixed game breaking bug where child class was called inside parent class
+22/10/24 12:42 - Deleted duplicated code in GameManager.cpp where paddle input was checked twice
